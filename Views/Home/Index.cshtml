@@ -1,0 +1,57 @@
+@{ ViewData["Title"] = "Home Page"; } @model belt_exam.Models.RegisterViews
+<h1>Welcome to Dojo Activity Center:</h1>
+<hr/>
+<div class="log">
+    <h3>Register</h3>
+    <br>
+    <br>
+    <span class="erori">@ViewBag.message</span>
+    <form action="/register" method="post">
+        <span class="erori" asp-validation-for="FirstName"></span>
+        <label asp-for="FirstName">Frist Name:</label>
+        <input asp-for="FirstName" type="text" /><br><br>
+        <span class="erori" asp-validation-for="LastName"></span>
+        <label asp-for="LastName">Last Name:</label>
+        <input asp-for="LastName" type="text" /><br><br>
+        <span class="erori" asp-validation-for="Email"></span>
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" type="email" /><br><br>
+        <span class="erori" asp-validation-for="Password"></span>
+        <label asp-for="Password">Password:</label>
+        <input asp-for="Password" /><br><br>
+        <span class="erori" asp-validation-for="PasswordConfirmation"></span><br>
+        <label asp-for="PasswordConfirmation">Password Confirmation:</label>
+        <input asp-for="PasswordConfirmation" /><br><br>
+        <button type="submit">Register!</button>
+    </form>
+</div>
+<div class="log">
+    <h3>Log In</h3>
+    <br>
+    <br>
+    <span class="erori">@ViewBag.err</span>
+    <form action="/login" method="Post">
+        <label for="email">Email:</label>
+        <input type="email" name="email"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password"><br><br>
+        <button type="submit">Log In</button>
+    </form>
+
+</div>
+<hr/>
+
+<style>
+    .erori {
+        color: red;
+    }
+    
+    .log {
+        width: 49%;
+        display: inline-block;
+    }
+    
+    h3 {
+        color: rgb(219, 146, 51);
+    }
+</style>

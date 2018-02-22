@@ -1,0 +1,61 @@
+@model belt_exam.Models.ActivityViews
+<div class="head">
+    <h1>Dojo Activity Center:</h1>
+</div>
+<div class="head">
+    <form class="form" action="/">
+        <button type="submit" formaction="/logout">Log Off</button>||<button type="submit" formaction="/home">Home</button>
+    </form>
+</div>
+<br>
+<h3>Create an Activity:</h3>
+<br>
+<form action="addActivity" method="POST">
+    <span class="erori" asp-validation-for="Title"></span><br>
+    <label asp-for="Title">Title:</label>
+    <input asp-for="Title" type="text"><br>
+    <span class="erori" asp-validation-for="DateTime"></span><br>
+    <label asp-for="DateTime">Date & Time:</label>
+    <input asp-for="DateTime" type="datetime-local"><br>
+    <span class="erori" asp-validation-for="Duration"></span><br>
+    <label asp-for="Duration">Duration:</label>
+    <input asp-for="Duration" type="number"><select name="min">
+        <option value="Minutes">Minutes</option>
+        <option value="Hours">Hours</option>
+        <option value="Days">Days</option>
+    </select><br>
+    <span class="erori" asp-validation-for="Description"></span><br>
+    <textarea asp-for="Description" cols="30" rows="4"></textarea><br>
+    <input type="submit" value="Add Activity">
+
+</form>
+
+
+<style>
+    h1 {
+        display: inline-block;
+    }
+    
+    #mess {
+        color: rgb(112, 112, 197)
+    }
+    
+    .head {
+        width: 48%;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .form {
+        margin-top: 50px;
+        margin-left: 300px;
+    }
+    
+    #butt {
+        margin-left: 540px;
+    }
+    
+    .erori {
+        color: red;
+    }
+</style>

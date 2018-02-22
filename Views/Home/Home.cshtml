@@ -1,0 +1,69 @@
+<style>
+    h1 {
+        display: inline-block;
+    }
+    
+    #mess {
+        color: rgb(112, 112, 197)
+    }
+    
+    .head {
+        width: 48%;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    form {
+        margin-top: 50px;
+        margin-left: 300px;
+    }
+    
+    #butt {
+        margin-left: 540px;
+    }
+</style>
+<div class="head">
+    <h1>Dojo Activity Center:</h1>
+    <h3 id="mess">Welcome,@ViewBag.session</h3>
+</div>
+<div class="head">
+    <form action="/">
+        <button type="submit" formaction="/logout">Log Off</button>
+    </form>
+
+</div>
+<br>
+<br>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>Activity:</th>
+            <th>Date and Time:</th>
+            <th>Duration:</th>
+            <th>Event Coordinator:</th>
+            <th>Number of Participants:</th>
+            <th>Actions:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var a in @ViewBag.activities){var flag=false; @if(@a.DateTime
+        < @DateTime.Now){ continue; } <tr>
+            <td><a href="/activity/@a.ActivityId">@a.Title</a></td>
+            <td>@a.DateTime</td>
+            <td>@a.Duration</td>
+            <td>@a.User.FirstName @a.User.LastName</td>
+            <td>@a.Joins.Count</td>
+            @foreach(var join in @a.Joins){ @if(@join.UserId==@ViewBag.sessionid && @join.ActivityId==@a.ActivityId){ flag=true; }} @if(@a.UserId==@ViewBag.sessionid){
+            <td><a href="delete/@a.ActivityId">Delete</a></td>
+            }else if(flag==false){
+            <td><a href="join/@a.ActivityId">Join</a></td>
+            }else if(flag==true){
+            <td><a href="unjoin/@a.ActivityId">UnJoin</a></td>
+            }
+            </tr>
+            }
+    </tbody>
+</table>
+<form action="/">
+    <button id="butt" type="submit" formaction="/new">Add Activity</button>
+</form>
